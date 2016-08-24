@@ -21,7 +21,7 @@ class RecordMaster
     public static function generateNumber()
     {
         $code = self::$codes[rand(0, count(self::$codes)-1)];
-        return "380{$code}".rand(0000000, 9999999);
+        return "380{$code}".rand(1000000, 9999999);
     }
 
     /**

@@ -17,10 +17,15 @@ class RecordsController extends Controller
 {
     public function actionGenerate($recordsCount = 10000)
     {
-        for ($i = 0; $i < $recordsCount; $i++) {
+        $array = [380929780779,380968056349,380919838913,380444898270,380955989252,380636727892,380922284684,380683322696,380632109064,380449465313];
+//        for ($i = 0; $i < $recordsCount; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $record = new Record();
-            $record->phone_a = RecordMaster::generateNumber();
-            $record->phone_b = RecordMaster::generateNumber();
+//            $record->phone_a = RecordMaster::generateNumber();
+//            $record->phone_b = RecordMaster::generateNumber();
+
+            $record->phone_a = (string)$array[rand(0, count($array)-1)];
+            $record->phone_b = (string)$array[rand(0, count($array)-1)];
 
             $begin_date = RecordMaster::generateDate();
             $connection_date = RecordMaster::getConnectionDate($begin_date);

@@ -18,6 +18,9 @@ use Yii;
  */
 class Record extends \yii\db\ActiveRecord
 {
+    public $count;
+    public $callLength;
+
     const INCOMING_CALL = 0;
     const OUTGOING_CALL = 1;
     /**

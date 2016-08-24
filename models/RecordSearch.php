@@ -19,7 +19,7 @@ class RecordSearch extends Record
     {
         return [
             [['id', 'direction'], 'integer'],
-            [['phone_a', 'phone_b', 'begin_date', 'connection_date', 'finish_date', 'comment'], 'safe'],
+            [['phone_a', 'phone_b', 'begin_date', 'connection_date', 'finish_date'], 'safe'],
         ];
     }
 
@@ -60,12 +60,17 @@ class RecordSearch extends Record
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'begin_date' => $this->begin_date,
             'connection_date' => $this->connection_date,
             'finish_date' => $this->finish_date,
             'direction' => $this->direction,
         ]);
 
+        if (isset($this->begin_date) && $this->begin_date!='') {
+            $date_explode = explode(" - ", $this->begin_date);
+            $date_from = trim($date_explode[0]);
+            $date_to = trim($date_explode[1]);
+            $query->andFilterWhere(['between', 'begin_date', $date_from, $date_to]);
+        }
         $query->andFilterWhere(['like', 'phone_a', $this->phone_a])
             ->andFilterWhere(['like', 'phone_b', $this->phone_b]);
 

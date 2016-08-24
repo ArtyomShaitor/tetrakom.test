@@ -6,6 +6,11 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ]
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -42,7 +47,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ["pattern" => "<action:\w+>", "route" => "/site/<action>"],
+                ["pattern" => "<action:\w+>", "route" => "site/<action>"],
                 ["pattern" => '<controller:\w+>/<action:\w+>', "route" =>'<controller>/<action>'],
             ],
         ],
